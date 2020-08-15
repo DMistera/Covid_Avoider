@@ -26,7 +26,7 @@
         android:layout_marginRight="21dp"
         android:gravity="center_horizontal"
         android:textAlignment="center"
-        android:textColor="#BC5814"
+        android:textColor="#FFFFFF"
         android:textSize="60sp"
         app:texts="@array/example_one"
         app:timeout="3000" />
