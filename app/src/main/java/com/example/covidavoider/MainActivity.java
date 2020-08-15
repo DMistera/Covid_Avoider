@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         fadingTextView = findViewById(R.id.fading_text_view);
     }
     public void startExample2(View v){
-        String[] example2 = {"Logowanie","lub","rejestracja"};
+        String[] example2 = {"F","dla","Dominika","FFFFFFFFFFFFFFFFFF"};
         fadingTextView.setTexts(example2);
         fadingTextView.setTimeout(1000, TimeUnit.MILLISECONDS);
     }
