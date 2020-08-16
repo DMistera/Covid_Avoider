@@ -17,15 +17,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mysong = MediaPlayer.create(MainActivity.this, R.raw.titanic_bad_recorder);
-        mysong.start();
         fadingTextView = findViewById(R.id.fading_text_view);
     }
     public void startExample2(View v){
-        String[] example2 = {"F","dla","Dominika","FFFFFFFFFFFFFFFFFF"};
-        mysong = MediaPlayer.create(MainActivity.this, R.raw.rick);
-        mysong.start();
-        fadingTextView.setTexts(example2);
-        fadingTextView.setTimeout(1000, TimeUnit.MILLISECONDS);
+        //String[] example2 = {"F","dla","Dominika","FFFFFFFFFFFFFFFFFF"};
+        //mysong = MediaPlayer.create(MainActivity.this, R.raw.rick);
+        //mysong.start();
+        //fadingTextView.setTexts(example2);
+        //fadingTextView.setTimeout(1000, TimeUnit.MILLISECONDS);
     }
 }
