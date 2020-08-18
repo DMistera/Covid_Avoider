@@ -38,4 +38,6 @@
     <string name="historia">Historia</string>
     <string name="textview">TextView</string>
     <string name="informacje"><![CDATA[<Informacje>]]></string>
+    <string name="settings">Settings</string>
+    <string name="main_acc">main acc</string>
 </resources>
