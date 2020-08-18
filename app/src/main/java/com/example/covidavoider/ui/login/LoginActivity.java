@@ -5,6 +5,7 @@ import android.app.Activity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -22,7 +23,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.covidavoider.HistoryActivity;
+import com.example.covidavoider.MainActivity;
 import com.example.covidavoider.R;
+import com.example.covidavoider.SettingsActivity;
 import com.example.covidavoider.ui.login.LoginViewModel;
 import com.example.covidavoider.ui.login.LoginViewModelFactory;
 
@@ -127,5 +131,17 @@ public class LoginActivity extends AppCompatActivity {
 
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+    }
+    public void startHist(View v){
+        Intent activity2Intent = new Intent(getApplicationContext(), HistoryActivity.class);
+        startActivity(activity2Intent);
+    }
+    public void startMain(View v){
+        Intent activity2Intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(activity2Intent);
+    }
+    public void startSett(View v){
+        Intent activity2Intent = new Intent(getApplicationContext(), SettingsActivity.class);
+        startActivity(activity2Intent);
     }
 }
