@@ -21,6 +21,16 @@ import androidx.core.content.ContextCompat;
 
 import android.util.Log;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap map;
@@ -55,6 +65,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         // Get the current location of the device and set the position of the map.
         getDeviceLocation();
+
+        GetMapCovidData();
     }
 
     private void getDeviceLocation() {
@@ -142,5 +154,27 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             }
         }
         updateLocationUI();
+    }
+
+    private void GetMapCovidData() {
+
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder().url("https://covid-193.p.rapidapi.com/statistics")
+                .addHeader("x-rapidapi-host", "covid-193.p.rapidapi.com")
+                .addHeader("x-rapidapi-key", "cf1a098d2fmsh67561ae14e0b471p1b37c6jsn5a3667b860b2")
+                .build();
+
+        Log.d("API", "Request sent!");
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                Log.d("API", e.toString());
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                Log.d("API", response.body().string());
+            }
+        });
     }
 }
