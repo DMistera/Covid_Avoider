@@ -7,10 +7,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.covidavoider.ui.login.LoginActivity;
 import com.tomer.fadingtextview.FadingTextView;
-
-import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
     MediaPlayer mysong;
