@@ -30,16 +30,4 @@ public class SettingsActivity extends AppCompatActivity {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
         }
     }
-    public void startHist(View v){
-        Intent activity2Intent = new Intent(getApplicationContext(), HistoryActivity.class);
-        startActivity(activity2Intent);
-    }
-    public void startMain(View v){
-        Intent activity2Intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(activity2Intent);
-    }
-    public void startSett(View v){
-        Intent activity2Intent = new Intent(getApplicationContext(), SettingsActivity.class);
-        startActivity(activity2Intent);
-    }
 }
