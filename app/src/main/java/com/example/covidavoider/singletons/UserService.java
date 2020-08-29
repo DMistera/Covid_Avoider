@@ -1,5 +1,6 @@
 package com.example.covidavoider.singletons;
 
+import com.example.covidavoider.daos.UserDao;
 import com.example.covidavoider.models.User;
 
 import java.util.ArrayList;
@@ -10,30 +11,36 @@ import java.util.Map;
 public class UserService {
 
     private static UserService instance;
-
     public static void create() {
         instance = new UserService();
     }
-
     public static UserService getInstance() {
         return instance;
     }
 
-    private Map<String, User> users;
+    private UserDao userDao;
+    private User currentUser;
 
     private UserService() {
-        users = new HashMap<>();
+        userDao = DatabaseService.getInstance().getDatabase().userDao();
     }
 
     public void register(User user) {
-        users.put(user.username, user);
+        userDao.insertAll(user);
     }
 
     public boolean login(String username, String password) {
-        if(users.containsKey(username)) {
-            User user = users.get(username);
-            return user.password.equals(password);
+        User user = userDao.findByName(username);
+        if(user != null) {
+             if(user.password.equals(password)) {
+                 currentUser = user;
+                 return true;
+             }
         }
         return false;
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
     }
 }
