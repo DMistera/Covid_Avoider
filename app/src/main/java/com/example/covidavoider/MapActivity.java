@@ -44,9 +44,7 @@ import okhttp3.Response;
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap map;
-    private boolean locationPermissionGranted;
     private Location lastKnownLocation;
-    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private final LatLng defaultLocation = new LatLng(-33.8523341, 151.2106085);
     private static final int DEFAULT_ZOOM = 1;
     private static final String TAG = MapActivity.class.getSimpleName();
@@ -69,8 +67,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap map) {
         this.map = map;
 
-        getLocationPermission();
-
         // Turn on the My Location layer and the related control on the map.
         updateLocationUI();
 
@@ -91,29 +87,27 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
          * cases when a location is not available.
          */
         try {
-            if (locationPermissionGranted) {
-                Task<Location> locationResult = fusedLocationProviderClient.getLastLocation();
-                locationResult.addOnCompleteListener(this, new OnCompleteListener<Location>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Location> task) {
-                        if (task.isSuccessful()) {
-                            // Set the map's camera position to the current location of the device.
-                            lastKnownLocation = task.getResult();
-                            if (lastKnownLocation != null) {
-                                map.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                                        new LatLng(lastKnownLocation.getLatitude(),
-                                                lastKnownLocation.getLongitude()), DEFAULT_ZOOM));
-                            }
-                        } else {
-                            Log.d(TAG, "Current location is null. Using defaults.");
-                            Log.e(TAG, "Exception: %s", task.getException());
-                            map.moveCamera(CameraUpdateFactory
-                                    .newLatLngZoom(defaultLocation, DEFAULT_ZOOM));
-                            map.getUiSettings().setMyLocationButtonEnabled(false);
+            Task<Location> locationResult = fusedLocationProviderClient.getLastLocation();
+            locationResult.addOnCompleteListener(this, new OnCompleteListener<Location>() {
+                @Override
+                public void onComplete(@NonNull Task<Location> task) {
+                    if (task.isSuccessful()) {
+                        // Set the map's camera position to the current location of the device.
+                        lastKnownLocation = task.getResult();
+                        if (lastKnownLocation != null) {
+                            map.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                                    new LatLng(lastKnownLocation.getLatitude(),
+                                            lastKnownLocation.getLongitude()), DEFAULT_ZOOM));
                         }
+                    } else {
+                        Log.d(TAG, "Current location is null. Using defaults.");
+                        Log.e(TAG, "Exception: %s", task.getException());
+                        map.moveCamera(CameraUpdateFactory
+                                .newLatLngZoom(defaultLocation, DEFAULT_ZOOM));
+                        map.getUiSettings().setMyLocationButtonEnabled(false);
                     }
-                });
-            }
+                }
+            });
         } catch (SecurityException e)  {
             Log.e("Exception: %s", e.getMessage(), e);
         }
@@ -124,52 +118,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             return;
         }
         try {
-            if (locationPermissionGranted) {
-                map.setMyLocationEnabled(true);
-                map.getUiSettings().setMyLocationButtonEnabled(true);
-            } else {
-                map.setMyLocationEnabled(false);
-                map.getUiSettings().setMyLocationButtonEnabled(false);
-                lastKnownLocation = null;
-                getLocationPermission();
-            }
+            map.setMyLocationEnabled(true);
+            map.getUiSettings().setMyLocationButtonEnabled(true);
         } catch (SecurityException e)  {
             Log.e("Exception: %s", e.getMessage());
         }
-    }
-
-    private void getLocationPermission() {
-        /*
-         * Request location permission, so that we can get the location of the
-         * device. The result of the permission request is handled by a callback,
-         * onRequestPermissionsResult.
-         */
-        if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
-                android.Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-            locationPermissionGranted = true;
-        } else {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                    PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        locationPermissionGranted = false;
-        switch (requestCode) {
-            case PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    locationPermissionGranted = true;
-                }
-            }
-        }
-        updateLocationUI();
     }
 
     private void getMapCovidData() {
