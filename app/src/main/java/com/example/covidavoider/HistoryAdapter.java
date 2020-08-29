@@ -1,5 +1,6 @@
 package com.example.covidavoider;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -42,6 +43,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
     @Override
     public void onBindViewHolder(@NonNull HistoryViewHolder holder, int position) {
         holder.textView.setText(entries.get(position).toString());
+        holder.textView.setTextColor(Color.parseColor("#ffffff"));
     }
 
     @Override
@@ -52,6 +54,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
     public static class HistoryViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView textView;
+
         public HistoryViewHolder(TextView v) {
             super(v);
             textView = v;

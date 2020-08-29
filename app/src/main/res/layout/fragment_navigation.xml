@@ -5,14 +5,15 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NavigationFragment" >
+    android:background="#5d574f"
+    tools:context=".NavigationFragment">
 
     <ImageButton
         android:id="@+id/mapButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginBottom="1dp"
         android:contentDescription="Mapa"
         android:src="@drawable/ic_baseline_local_activity_24"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,13 +23,10 @@
         android:id="@+id/historyButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="39dp"
-        android:layout_marginEnd="21dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="1dp"
         android:src="@drawable/ic_baseline_history_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/settingsButton"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/mapButton" />
 
     <ImageButton
@@ -36,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="112dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="1dp"
         android:src="@drawable/ic_baseline_settings_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
