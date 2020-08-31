@@ -24,4 +24,5 @@
     <string name="nickname">Nick</string>
     <string name="enter">Wejdź</string>
     <string name="entry_message_1">Witaj w</string>
+    <string name="nick">Nick</string>
 </resources>
