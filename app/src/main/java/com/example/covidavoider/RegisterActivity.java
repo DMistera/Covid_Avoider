@@ -38,13 +38,6 @@ public class RegisterActivity extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
             builder.setMessage("nick need to have at least 5 characters");
             builder.setCancelable(true);
-            builder.setPositiveButton(
-                    "Ok",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                        }
-                    });
             AlertDialog dialog = builder.create();
             dialog.show();
         }
@@ -52,13 +45,6 @@ public class RegisterActivity extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
             builder.setMessage("password need to have at least 5 characters");
             builder.setCancelable(true);
-            builder.setPositiveButton(
-                    "Ok",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                        }
-                    });
             AlertDialog dialog = builder.create();
             dialog.show();
         }

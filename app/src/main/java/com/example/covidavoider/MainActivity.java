@@ -21,11 +21,5 @@ public class MainActivity extends AppCompatActivity {
     public void startExample2(View v){
         Intent activity2Intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(activity2Intent);
-        //setContentView(R.layout.activity_login);
-        //String[] example2 = {"F","dla","Dominika","FFFFFFFFFFFFFFFFFF"};
-        //mysong = MediaPlayer.create(MainActivity.this, R.raw.rick);
-        //mysong.start();
-        //fadingTextView.setTexts(example2);
-        //fadingTextView.setTimeout(1000, TimeUnit.MILLISECONDS);
     }
 }
