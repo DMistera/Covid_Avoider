@@ -21,4 +21,7 @@
     <string name="title_activity_map">Mapa</string>
     <string name="settings">Ustawienia</string>
     <string name="main_acc">Glowne konto</string>
+    <string name="nickname">Nick</string>
+    <string name="enter">Wejdź</string>
+    <string name="entry_message_1">Witaj w</string>
 </resources>

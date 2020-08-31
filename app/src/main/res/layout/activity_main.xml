@@ -48,7 +48,7 @@
         android:layout_marginBottom="32dp"
         android:background="@drawable/gradient_normal"
         android:onClick="startExample2"
-        android:text="logowanie"
+        android:text="@string/enter"
         android:textColor="#FFFFFF" />
 
 </RelativeLayout>
