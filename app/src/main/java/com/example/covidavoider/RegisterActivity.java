@@ -34,20 +34,50 @@ public class RegisterActivity extends AppCompatActivity {
         User user = new User();
         user.username = usernameEditText.getText().toString();
         user.password = passwordEditText.getText().toString();
-        UserService.getInstance().register(user);
+        if(user.username.length()<5){
+            AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+            builder.setMessage("nick need to have at least 5 characters");
+            builder.setCancelable(true);
+            builder.setPositiveButton(
+                    "Ok",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                        }
+                    });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+        else if(user.password.length()<5){
+            AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+            builder.setMessage("password need to have at least 5 characters");
+            builder.setCancelable(true);
+            builder.setPositiveButton(
+                    "Ok",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                        }
+                    });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+        else {
+            UserService.getInstance().register(user);
 
-        // Display success message
-        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-        builder.setMessage("You have created an account! Try to sign in now!");
-        builder.setCancelable(true);
-        builder.setPositiveButton(
-                "Ok",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                    }
-                });
-        AlertDialog dialog = builder.create();
-        dialog.show();
+            // Display success message
+            AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+            builder.setMessage("You have created an account! Try to sign in now!");
+            builder.setCancelable(true);
+            builder.setPositiveButton(
+                    "Ok",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                        }
+                    });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
     }
 }
