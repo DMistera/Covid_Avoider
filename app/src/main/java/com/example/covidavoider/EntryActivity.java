@@ -27,7 +27,6 @@ public class EntryActivity extends AppCompatActivity {
         UserService.create();
         HistoryService.create();
 
-        startService(new Intent(this, TrackerService.class));
         getLocationPermission();
     }
 
@@ -57,6 +56,7 @@ public class EntryActivity extends AppCompatActivity {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    startService(new Intent(this, TrackerService.class));
                     progress();
                 }
             }

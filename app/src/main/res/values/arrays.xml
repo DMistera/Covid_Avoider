@@ -14,4 +14,9 @@
         <item>Witaj w</item>
         <item>Covid Avoider</item>
     </string-array>
+
+    <string-array name="languages">
+        <item>English</item>
+        <item>Polski</item>
+    </string-array>
 </resources>
