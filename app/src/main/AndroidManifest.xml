@@ -23,7 +23,9 @@
             android:exported="true" >
         </service>
 
-        <activity android:name=".RegisterActivity" />
+        <activity android:name=".RegisterActivity"
+            android:label="@string/title_activity_register"
+            />
         <activity android:name=".EntryActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
