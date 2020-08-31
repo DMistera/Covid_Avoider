@@ -36,14 +36,21 @@ public class RegisterActivity extends AppCompatActivity {
         user.password = passwordEditText.getText().toString();
         if(user.username.length()<5){
             AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-            builder.setMessage("nick need to have at least 5 characters");
+            builder.setMessage("Nick need to have at least 5 characters");
             builder.setCancelable(true);
             AlertDialog dialog = builder.create();
             dialog.show();
         }
         else if(user.password.length()<5){
             AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-            builder.setMessage("password need to have at least 5 characters");
+            builder.setMessage("Password need to have at least 5 characters");
+            builder.setCancelable(true);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+        else if(UserService.getInstance().usernameExists(user.username)){
+            AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+            builder.setMessage("This user name has been taken");
             builder.setCancelable(true);
             AlertDialog dialog = builder.create();
             dialog.show();

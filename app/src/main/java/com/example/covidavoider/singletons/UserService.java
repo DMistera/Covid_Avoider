@@ -29,6 +29,11 @@ public class UserService {
         userDao.insertAll(user);
     }
 
+    public boolean usernameExists(String username) {
+        User user = userDao.findByName(username);
+        return user != null;
+    }
+
     public boolean login(String username, String password) {
         User user = userDao.findByName(username);
         if(user != null) {
